@@ -1,0 +1,82 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  font-family: system-ui, sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right)
+           env(safe-area-inset-bottom) env(safe-area-inset-left);
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#game-container {
+  width: 100%;
+  max-width: 800px;
+  padding: 1rem;
+  text-align: center;
+}
+
+canvas {
+  display: block;
+  /* ancho limitado para que el alto (la mitad) quepa en la pantalla */
+  width: min(100%, 150vh);
+  width: min(100%, 150dvh);
+  height: auto;
+  aspect-ratio: 2 / 1;
+  margin: 0 auto;
+  background: #1e293b;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  touch-action: none;   /* evita zoom/scroll al tocar el juego */
+  cursor: pointer;
+}
+
+#hud {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  width: min(100%, 150vh);
+  width: min(100%, 150dvh);
+  margin: 0.75rem auto 0;
+  font-size: 1.1rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#score { grid-row: 1; grid-column: 1; justify-self: start; }
+#best { grid-row: 1; grid-column: 3; justify-self: end; }
+
+#restartBtn {
+  grid-row: 1;
+  grid-column: 2;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #38bdf8;
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#instructions {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+/* En el móvil horizontal, el juego ocupa casi toda la pantalla */
+@media (orientation: landscape) and (max-height: 500px) {
+  #game-container { padding: 0.25rem; }
+  #instructions { display: none; }
+  #hud { margin-top: 0.25rem; margin-bottom: 0; font-size: 0.95rem; }
+  #restartBtn { padding: 0.3rem 0.9rem; }
+}
